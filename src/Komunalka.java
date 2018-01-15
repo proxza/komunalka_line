@@ -3,7 +3,6 @@ public class Komunalka {
     public static void main(String[] args) {
         // Тарифы актуальны на 15.01.18
 
-
         System.out.println("В этом месяце");
 
         // Выводим стоимость за Свет
@@ -14,17 +13,17 @@ public class Komunalka {
 
         //Выводим стоимость за Газ
         Gas(1231, 1304); // Показания вводить без нолей в начале строки
-
     }
 
     /**
      * Класс подсчета стоимости коммуналки за свет
      * @param oldLight - Показания счетчика за предыдущий месяц
      * @param newLight - Показания счетчика за прошлый месяц
+     * @return
      */
     public static double Lights(int oldLight, int newLight) {
         double var;
-        int kilowatts;
+        int kilowatts; // Сколько всего потребило кВт
         double lightTariff = 0.9; // Тариф по умолчанию 0.90коп до 100кВт
 
         kilowatts = newLight - oldLight;
@@ -40,7 +39,6 @@ public class Komunalka {
         return 0;
     }
 
-
     /**
      * Класс подсчета стоимости коммуналки за воду
      * @param oldWater - Показания счетчика за предыдущий месяц
@@ -49,8 +47,8 @@ public class Komunalka {
      */
     public static double Waters(int oldWater, int newWater) {
         double var;
-        int kybWaters;
-        double waterTariff = 13; // Тариф горводоканала 12,936 грн. (с НДС) но округлил до 13грн за куб.
+        int kybWaters; // Сколько всего потребило кубометров воды
+        double waterTariff = 13; // Тариф горводоканала 12,936 грн. (с НДС). Округлил до 13грн за куб.
 
         kybWaters = newWater - oldWater;
         var = kybWaters * waterTariff;
@@ -59,11 +57,16 @@ public class Komunalka {
         return 0;
     }
 
-
+    /**
+     * Кдасс подсчета стоимости коммуналки за газ
+     * @param oldGas - Показания счетчика за предыдущий месяц
+     * @param newGas - Показания счетчика за прошлый месяц
+     * @return
+     */
     public static double Gas(int oldGas, int newGas) {
         double var;
-        int kybGas;
-        double gasTariff = 7;
+        int kybGas; // Сколько всего потребило кубометров газа
+        double gasTariff = 7; // Тариф с сайта 104.ua - 6.9579 грн. за куб.м. Округлил до 7грн
 
         kybGas = newGas - oldGas;
         var = kybGas * gasTariff;
