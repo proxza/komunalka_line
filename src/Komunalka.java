@@ -1,18 +1,46 @@
+//import java.io.BufferedReader;
+//import java.io.InputStreamReader;
+import java.util.Scanner;
+
 public class Komunalka {
+
+    public static int count; // Переменная для подсчета всей суммы
 
     public static void main(String[] args) {
         // Тарифы актуальны на 15.01.18
 
-        System.out.println("В этом месяце");
+        //BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+
+        // Считываем данные с клавиатуры
+        Scanner scan = new Scanner(System.in);
+
+        System.out.print("Введите старые показания за СВЕТ: ");
+        int light1 = scan.nextInt();
+        System.out.print("Введите новые показания за СВЕТ: ");
+        int light2 = scan.nextInt();
+
+        System.out.print("Введите старые показания за ВОДУ: ");
+        int water1 = scan.nextInt();
+        System.out.print("Введите новые показания за ВОДУ: ");
+        int water2 = scan.nextInt();
+
+        System.out.print("Введите старые показания за ГАЗ: ");
+        int gas1 = scan.nextInt();
+        System.out.print("Введите новые показания за ГАЗ: ");
+        int gas2 = scan.nextInt();
+
+        System.out.println("\nИтого за месяц: ");
 
         // Выводим стоимость за Свет
-        Lights(7468, 7658); // Показания вводить без нолей в начале строки
+        Lights(light1, light2); // Показания вводить без нолей в начале строки
 
         // Выводим стоимость за Воду
-        Waters(263, 277); // Показания вводить без нолей в начале строки
+        Waters(water1, water2); // Показания вводить без нолей в начале строки
 
         //Выводим стоимость за Газ
-        Gas(1231, 1304); // Показания вводить без нолей в начале строки
+        Gas(gas1, gas2); // Показания вводить без нолей в начале строки
+
+        System.out.println("Всего: " + count + "грн");
     }
 
     /**
@@ -35,6 +63,8 @@ public class Komunalka {
 
         var = kilowatts * lightTariff;
 
+        Komunalka.count += var;
+
         System.out.println("Оплата за СВЕТ: " + var + "грн (" + kilowatts + " кВт)");
         return 0;
     }
@@ -53,6 +83,8 @@ public class Komunalka {
         kybWaters = newWater - oldWater;
         var = kybWaters * waterTariff;
 
+        Komunalka.count += var;
+
         System.out.println("Оплата за ВОДУ: " + var + "грн (" + kybWaters + " куб.)");
         return 0;
     }
@@ -70,6 +102,8 @@ public class Komunalka {
 
         kybGas = newGas - oldGas;
         var = kybGas * gasTariff;
+
+        Komunalka.count += var;
 
         System.out.println("Оплата за ГАЗ: " + var + "грн (" + kybGas + " куб.)");
         return 0;
